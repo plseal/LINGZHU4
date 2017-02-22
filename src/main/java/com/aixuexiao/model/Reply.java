@@ -15,7 +15,7 @@ public class Reply implements Serializable {
 
 	public static final String TEXT = "text";
 	public static final String MUSIC = "music";
-	public static final String NEWS = "news";
+	public static final String NEWS = "news"; 
 	
 	//public static final String ERROR_CONTENT = "查询失败，请检查你的回复是否正确。\n查询最近健康情况请回复：学号_考试（如：3021_考试）\n 查询最近最近10次考试情况请回复：学号_考试历史（如：3021_考试历史）\n 查询老师留言情况请回复：学号_留言（如：3021_留言）\n查询老师留言记录（最近10次）情况请回复：学号_留言历史（如：3021_留言历史）\n\n 查询班级动态情况请回复：学号_动态（如：3021_动态）\n查询班级动态记录（最近10次）情况请回复：学号_动态历史（如：3021_动态历史）\n";
 	public static final String ERROR_CONTENT = "查询失败，请检查你的回复是否正确。";
