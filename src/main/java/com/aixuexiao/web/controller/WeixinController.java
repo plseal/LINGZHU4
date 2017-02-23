@@ -42,7 +42,7 @@ public class WeixinController {
 	@RequestMapping(value="/weixin",method=RequestMethod.POST,produces="text/html;charset=UTF-8")
 	@ResponseBody
 	public String replyMessage(HttpServletRequest request){
-		logger.debug("["+this.getClass().getName()+"][replyMessage][start]"); 
+		logger.info("["+this.getClass().getName()+"][replyMessage][start]"); 
 		//仅处理微信服务端发的请求
 		if (checkWeixinReques(request)) {
 			Map<String, String> requestMap = WeixinUtil.parseXml(request);
@@ -87,11 +87,11 @@ public class WeixinController {
 			//将回复消息序列化为xml形式
 			String back = WeixinUtil.replyToXml(reply);
 			System.out.println(back);
-			logger.debug("["+this.getClass().getName()+"][replyMessage][end]");
+			logger.info("["+this.getClass().getName()+"][replyMessage][end]");
 			return back;
 			
 		}else{
-			logger.debug("["+this.getClass().getName()+"][replyMessage][end]");
+			logger.info("["+this.getClass().getName()+"][replyMessage][end]");
 			return "error";
 			
 		}
@@ -115,7 +115,8 @@ public class WeixinController {
 	/**
 	 * 根据token计算signature验证是否为weixin服务端发送的消息
 	 */
-	private static boolean checkWeixinReques(HttpServletRequest request){
+	private boolean checkWeixinReques(HttpServletRequest request){
+		logger.info("["+this.getClass().getName()+"][checkWeixinReques][start]");
 		String signature = request.getParameter("signature");
 		String timestamp = request.getParameter("timestamp");
 		String nonce = request.getParameter("nonce");
@@ -127,6 +128,10 @@ public class WeixinController {
 				key = key + string;
 			}
 			String pwd = WeixinUtil.sha1(key);
+			logger.info("["+this.getClass().getName()+"][checkWeixinReques][pwd]"+pwd);
+			logger.info("["+this.getClass().getName()+"][checkWeixinReques][signature]"+signature);
+			logger.info("["+this.getClass().getName()+"][checkWeixinReques][end]");
+			
 			return pwd.equals(signature);
 		}else {
 			return false;
