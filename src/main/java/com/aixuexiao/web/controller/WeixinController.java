@@ -4,7 +4,7 @@ package com.aixuexiao.web.controller;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
+import org.apache.log4j.Logger;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,9 +20,10 @@ import com.aixuexiao.model.Reply;
 import com.aixuexiao.service.WeixinService;
 import com.aixuexiao.util.WeixinUtil;
 
+
 @Controller()
 public class WeixinController {
-	
+	private static Logger logger = Logger.getLogger(WeixinController.class);
 	private static final String TOKEN = "LINGZHU2017";
 	
 	public static int pagesize = 10;
@@ -41,6 +42,7 @@ public class WeixinController {
 	@RequestMapping(value="/weixin",method=RequestMethod.POST,produces="text/html;charset=UTF-8")
 	@ResponseBody
 	public String replyMessage(HttpServletRequest request){
+		logger.info("["+this.getClass().getName()+"][replyMessage][start]");
 		//仅处理微信服务端发的请求
 		if (checkWeixinReques(request)) {
 			Map<String, String> requestMap = WeixinUtil.parseXml(request);
@@ -85,10 +87,15 @@ public class WeixinController {
 			//将回复消息序列化为xml形式
 			String back = WeixinUtil.replyToXml(reply);
 			System.out.println(back);
+			logger.info("["+this.getClass().getName()+"][replyMessage][end]");
 			return back;
+			
 		}else{
+			logger.info("["+this.getClass().getName()+"][replyMessage][end]");
 			return "error";
+			
 		}
+		
 	}
 	
 	
