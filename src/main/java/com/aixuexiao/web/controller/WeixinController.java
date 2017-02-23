@@ -116,7 +116,7 @@ public class WeixinController {
 	 * 根据token计算signature验证是否为weixin服务端发送的消息
 	 */
 	private boolean checkWeixinReques(HttpServletRequest request){
-		logger.info("["+this.getClass().getName()+"][checkWeixinReques][start]");
+		//logger.info("["+this.getClass().getName()+"][checkWeixinReques][start]");
 		String signature = request.getParameter("signature");
 		String timestamp = request.getParameter("timestamp");
 		String nonce = request.getParameter("nonce");
@@ -128,9 +128,9 @@ public class WeixinController {
 				key = key + string;
 			}
 			String pwd = WeixinUtil.sha1(key);
-			logger.info("["+this.getClass().getName()+"][checkWeixinReques][pwd]"+pwd);
-			logger.info("["+this.getClass().getName()+"][checkWeixinReques][signature]"+signature);
-			logger.info("["+this.getClass().getName()+"][checkWeixinReques][end]");
+			//logger.info("["+this.getClass().getName()+"][checkWeixinReques][pwd]"+pwd);
+			//logger.info("["+this.getClass().getName()+"][checkWeixinReques][signature]"+signature);
+			//logger.info("["+this.getClass().getName()+"][checkWeixinReques][end]");
 			
 			return pwd.equals(signature);
 		}else {
