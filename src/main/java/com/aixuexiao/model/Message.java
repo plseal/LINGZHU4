@@ -16,6 +16,10 @@ public  class Message implements Serializable{
 	public static final String LOCATION = "location";
 	public static final String LINK = "link";
 	public static final String EVENT = "event";
+	/**
+	 * 事件类型：CLICK(自定义菜单点击事件)
+	 */
+	public static final String EVENT_TYPE_CLICK = "CLICK";
 	
 	@XStreamOmitField
 	private int id;//数据库存储的id

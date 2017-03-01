@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,7 @@ import com.aixuexiao.model.Classes;
 import com.aixuexiao.model.ClassesNews;
 import com.aixuexiao.model.Student;
 import com.aixuexiao.service.ClassesService;
+import com.aixuexiao.service.MenuService;
 
 /**
  * 包含班级列表菜单内的所有操作
@@ -22,7 +24,7 @@ import com.aixuexiao.service.ClassesService;
 @Controller
 public class ClassesController {
 	
-	
+	private static Logger logger = Logger.getLogger(MenuService.class);
 	public static int pagesize = 10;
 	
 	@Resource(name="classesService")
@@ -31,6 +33,7 @@ public class ClassesController {
 	
 	@RequestMapping(value="/manager/classes",method=RequestMethod.GET)
 	public ModelAndView listStudent(String pagenum,Classes classes){
+		logger.info("["+this.getClass().getName()+"][listStudent][start]");
 		ModelAndView mv=new ModelAndView();
 		mv.setViewName("classes");
 		mv.addObject("sidebar","classes");
@@ -43,6 +46,7 @@ public class ClassesController {
 		mv.addObject("length", list.size());
 		mv.addObject("pagenum", num);
 		mv.addObject("classes", classes);
+		logger.info("["+this.getClass().getName()+"][listStudent][end]");
 		return mv;
 	}
 

@@ -42,7 +42,12 @@
 				</li>
 			</ul>
 		</li>
-		 
+		<li <c:if test="${sidebar=='classes'}">class="active"</c:if> >
+			<a href="<%=request.getContextPath()%>/manager/create-menu">
+				<i class="icon-list-alt"></i>
+				<span class="menu-text"> 初始微信菜单 </span>
+			</a>
+		</li>
 	</ul><!--/.nav-list-->
 	<div class="sidebar-collapse" id="sidebar-collapse">
 		<i class="icon-double-angle-left"></i>

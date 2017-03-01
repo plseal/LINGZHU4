@@ -75,6 +75,42 @@ public class WeixinController {
 						replyContent = Reply.ERROR_CONTENT;
 					}
 				}
+			} else if (type.equals(Message.EVENT)) {//自定义菜单点击事件  
+				logger.info("["+this.getClass().getName()+"][replyMessage][event]");
+				 // 事件类型  
+                String eventType = requestMap.get("Event");  
+                logger.info("["+this.getClass().getName()+"][replyMessage][eventType]"+eventType);
+                // 自定义菜单点击事件  
+                if (eventType.equals(Message.EVENT_TYPE_CLICK)) {  
+	                // 事件KEY值，与创建自定义菜单时指定的KEY值对应  
+	                String eventKey = requestMap.get("EventKey");  
+	                logger.info("["+this.getClass().getName()+"][replyMessage][eventKey:]"+eventKey);
+	                if (eventKey.equals("11")) {  
+	                	replyContent = "天气预报菜单项被点击！";  
+	                } else if (eventKey.equals("12")) {  
+	                	replyContent = "公交查询菜单项被点击！";  
+	                } else if (eventKey.equals("13")) {  
+	                	replyContent = "周边搜索菜单项被点击！";  
+	                } else if (eventKey.equals("14")) {  
+	                	replyContent = "历史上的今天菜单项被点击！";  
+	                } else if (eventKey.equals("21")) {  
+	                	replyContent = "歌曲点播菜单项被点击！";  
+	                } else if (eventKey.equals("22")) {  
+	                	replyContent = "经典游戏菜单项被点击！";  
+	                } else if (eventKey.equals("23")) {  
+	                	replyContent = "美女电台菜单项被点击！";  
+	                } else if (eventKey.equals("24")) {  
+	                	replyContent = "人脸识别菜单项被点击！";  
+	                } else if (eventKey.equals("25")) {  
+	                	replyContent = "聊天唠嗑菜单项被点击！";  
+	                } else if (eventKey.equals("31")) {  
+	                	replyContent = "Q友圈菜单项被点击！";  
+	                } else if (eventKey.equals("32")) {  
+	                	replyContent = "电影排行榜菜单项被点击！";  
+	                } else if (eventKey.equals("33")) {  
+	                	replyContent = "幽默笑话菜单项被点击！";  
+	                } 
+                }
 			}
 			//拼装回复消息
 			Reply reply = new Reply();
