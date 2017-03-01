@@ -43,13 +43,14 @@ public class WeixinController {
 	@ResponseBody
 	public String replyMessage(HttpServletRequest request){
 		logger.info("["+this.getClass().getName()+"][replyMessage][start]"); 
-		//仅处理微信服务端发的请求
+		//仅处理微信服务端发的请求............
 		if (checkWeixinReques(request)) {
 			Map<String, String> requestMap = WeixinUtil.parseXml(request);
 			Message message = WeixinUtil.mapToMessage(requestMap);
 			weixinService.addMessage(message);//保存接受消息到数据库
 			String replyContent = Reply.WELCOME_CONTENT;
 			String type = message.getMsgType();
+			logger.info("["+this.getClass().getName()+"][replyMessage][message type]"+type);
 			if (type.equals(Message.TEXT)) {//仅处理文本回复内容
 				String content = message.getContent();//消息内容
 				String [] cs = content.split("_");//消息内容都以下划线_分隔
