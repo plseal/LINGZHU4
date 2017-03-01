@@ -88,29 +88,29 @@ public class WeixinController {
 	                String eventKey = requestMap.get("EventKey");  
 	                logger.info("["+this.getClass().getName()+"][replyMessage][eventKey:]"+eventKey);
 	                if (eventKey.equals("11")) {  
-	                	replyContent = "天气预报菜单项被点击！";  
+	                	replyContent = "快乐孕检被点击！";  
 	                } else if (eventKey.equals("12")) {  
-	                	replyContent = "公交查询菜单项被点击！";  
+	                	replyContent = "健康潮流被点击！";  
 	                } else if (eventKey.equals("13")) {  
-	                	replyContent = "周边搜索菜单项被点击！";  
+	                	//replyContent = "周边搜索菜单项被点击！";  
 	                } else if (eventKey.equals("14")) {  
-	                	replyContent = "历史上的今天菜单项被点击！";  
+	                	//replyContent = "历史上的今天菜单项被点击！";  
 	                } else if (eventKey.equals("21")) {  
-	                	replyContent = "歌曲点播菜单项被点击！";  
+	                	replyContent = "成长点滴被点击！";  
 	                } else if (eventKey.equals("22")) {  
-	                	replyContent = "经典游戏菜单项被点击！";  
+	                	replyContent = "快乐体检被点击！";  
 	                } else if (eventKey.equals("23")) {  
-	                	replyContent = "美女电台菜单项被点击！";  
+	                	//replyContent = "美女电台菜单项被点击！";  
 	                } else if (eventKey.equals("24")) {  
-	                	replyContent = "人脸识别菜单项被点击！";  
+	                	//replyContent = "人脸识别菜单项被点击！";  
 	                } else if (eventKey.equals("25")) {  
-	                	replyContent = "聊天唠嗑菜单项被点击！";  
+	                	//replyContent = "聊天唠嗑菜单项被点击！";  
 	                } else if (eventKey.equals("31")) {  
-	                	replyContent = "Q友圈菜单项被点击！";  
+	                	replyContent = "直接咨询被点击！";  
 	                } else if (eventKey.equals("32")) {  
-	                	replyContent = "电影排行榜菜单项被点击！";  
+	                	replyContent = "了解我们被点击！";  
 	                } else if (eventKey.equals("33")) {  
-	                	replyContent = "幽默笑话菜单项被点击！";  
+	                	replyContent = "联系我们被点击！";  
 	                } 
                 }
 			}
