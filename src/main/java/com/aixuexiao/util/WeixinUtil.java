@@ -257,6 +257,8 @@ public class WeixinUtil {
 	}
 	
 
+
+	
 	/**
 	 * 获取access_token
 	 * 
@@ -264,8 +266,8 @@ public class WeixinUtil {
 	 * @param appsecret 密钥
 	 * @return
 	 */
-	public static AccessToken getAccessToken(String appid, String appsecret) {
-		logger.info("[WeixinUtil][getAccessToken][start]");
+	public static AccessToken getAccessTokenFromURL(String appid, String appsecret) {
+		logger.info("[WeixinUtil][getAccessTokenFromURL][start]");
 		AccessToken accessToken = null;
 
 		String requestUrl = access_token_url.replace("APPID", appid).replace("APPSECRET", appsecret);
@@ -274,18 +276,17 @@ public class WeixinUtil {
 		if (null != jsonObject) {
 			try {
 				accessToken = new AccessToken();
-				accessToken.setToken(jsonObject.getString("access_token"));
-				accessToken.setExpiresIn(jsonObject.getInt("expires_in"));
+				accessToken.setAccess_token(jsonObject.getString("access_token"));
+				accessToken.setExpires_in(jsonObject.getInt("expires_in"));
 			} catch (JSONException e) {
 				accessToken = null;
 				// 获取token失败
 				logger.error("LINGZHU:获取token失败 errcode:{} errmsg:{}", jsonObject.getInt("errcode"), jsonObject.getString("errmsg"));
 			}
 		}
-		logger.info("[WeixinUtil][getAccessToken][end]");
+		logger.info("[WeixinUtil][getAccessTokenFromURL][end]");
 		return accessToken;
 	}
-	
 
 	/**
 	 * 创建菜单

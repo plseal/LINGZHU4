@@ -24,6 +24,7 @@
         <setting name="defaultStatementTimeout" value="25000" />  
     </settings>  
     <typeAliases>
+   		 <typeAlias alias="AccessToken"  type="com.aixuexiao.model.AccessToken" />
    		 <typeAlias alias="Message"  type="com.aixuexiao.model.Message" />
    		 <typeAlias alias="Reply"  type="com.aixuexiao.model.Reply" />
    		 <typeAlias alias="Article"  type="com.aixuexiao.model.Article" />
@@ -35,6 +36,7 @@
    		 <typeAlias alias="ClassesNews"  type="com.aixuexiao.model.ClassesNews" />
 	</typeAliases>
     <mappers>
+    	<mapper resource="com/aixuexiao/dao/sqlmap/AccessTokenMapper.xml"/>
     	<mapper resource="com/aixuexiao/dao/sqlmap/ReplyMapper.xml"/>
     	<mapper resource="com/aixuexiao/dao/sqlmap/MessageMapper.xml"/>
     	<mapper resource="com/aixuexiao/dao/sqlmap/StudentMapper.xml"/>

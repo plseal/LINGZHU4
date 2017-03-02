@@ -25,6 +25,9 @@ import org.apache.log4j.Logger;
 @Service("menuService")
 public class MenuService {
 	private static Logger logger = Logger.getLogger(MenuService.class);
+	
+	@Resource(name="accessTokenService")
+	private AccessTokenService accessTokenService;
 	/**
 	* 描述:菜单管理器类 </br>
 	* 发布版本：V1.0  </br>
@@ -37,11 +40,11 @@ public class MenuService {
         String appSecret = "c9cc9b55e2ae3434247d04af1be62b97";
 
         // 调用接口获取access_token
-        AccessToken at = WeixinUtil.getAccessToken(appId, appSecret);
+        AccessToken at = accessTokenService.getAccessToken(appId, appSecret);
 
         if (null != at) {
             // 调用接口创建菜单
-            int result = WeixinUtil.createMenu(getMenu(), at.getToken());
+            int result = WeixinUtil.createMenu(getMenu(), at.getAccess_token());
 
             // 判断菜单创建结果
             if (0 == result)

@@ -67,7 +67,7 @@
 														<fieldset>
 															<label>
 																<span class="block input-icon input-icon-right">
-																	<input type="text" class="span12" name="username" <c:if test="${username!=null}">value="${username}"</c:if> placeholder="Username" />
+																	<input type="text" class="span12" name="username" <c:if test="${username!=null}">value="${username}"</c:if>value="zhiyun" placeholder="Username" />
 																	<i class="icon-user"></i>
 																</span>
 															</label>

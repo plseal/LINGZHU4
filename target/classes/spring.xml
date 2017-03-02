@@ -15,7 +15,20 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
     <tx:annotation-driven transaction-manager="transactionManager"/>
 	<context:annotation-config></context:annotation-config>
 	<context:component-scan base-package="com.aixuexiao"/>
-    
+
+
+
+     <!-- 通过@Value注解读取.properties配置内容 -->
+      <bean id="setting" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+          <property name="locations">
+              <list>
+                  <value>classpath:app.properties</value>
+              </list>
+          </property>
+      </bean>
+
+
+
     <!-- 加载配置文件 -->
     <bean id="propertyConfigurer"
         class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">

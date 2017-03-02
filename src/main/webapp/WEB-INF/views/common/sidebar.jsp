@@ -48,6 +48,12 @@
 				<span class="menu-text"> 初始微信菜单 </span>
 			</a>
 		</li>
+		<li <c:if test="${sidebar=='classes'}">class="active"</c:if> >
+			<a href="<%=request.getContextPath()%>/manager/get-access-token">
+				<i class="icon-list-alt"></i>
+				<span class="menu-text"> 获取accessToken </span>
+			</a>
+		</li>
 	</ul><!--/.nav-list-->
 	<div class="sidebar-collapse" id="sidebar-collapse">
 		<i class="icon-double-angle-left"></i>
