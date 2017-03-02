@@ -46,8 +46,11 @@ public class WeixinController {
 		//仅处理微信服务端发的请求
 		if (checkWeixinReques(request)) {
 			//logger.info("["+this.getClass().getName()+"][replyMessage][start checkWeixinReques OK]");
+			
 			Map<String, String> requestMap = WeixinUtil.parseXml(request);
 			Message message = WeixinUtil.mapToMessage(requestMap);
+			logger.info("["+this.getClass().getName()+"][replyMessage][message.getFromUserName()]"+message.getFromUserName());
+			
 			//weixinService.addMessage(message);//保存接受消息到数据库
 			String replyContent = Reply.WELCOME_CONTENT;
 			String type = message.getMsgType();
