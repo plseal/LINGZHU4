@@ -31,15 +31,16 @@ public class MenuController {
 	
 	
 	@RequestMapping(value="/manager/create-menu",method=RequestMethod.GET)
-	public ModelAndView createMenu(){
+	@ResponseBody
+	public String createMenu(){
 		
 		logger.info("["+this.getClass().getName()+"][createMenu][start]"); 
-		ModelAndView mv=new ModelAndView();
+		//ModelAndView mv=new ModelAndView();
 		menuService.createMenu();
-		mv.setViewName("classes");
-		mv.addObject("sidebar","classes");
+		//mv.setViewName("classes");
+		//mv.addObject("sidebar","classes");
 		logger.info("["+this.getClass().getName()+"][createMenu][end]"); 
-		return mv;
+		return "create menu successed!";
 	}
 
 	
