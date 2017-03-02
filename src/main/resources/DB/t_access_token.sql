@@ -10,6 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50715
 File Encoding         : 65001
 
+Date: 2017-03-02 23:02:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,6 +22,7 @@ DROP TABLE IF EXISTS `t_access_token`;
 CREATE TABLE `t_access_token` (
   `id` int(100) DEFAULT NULL,
   `access_token` varchar(600) NOT NULL,
+  `expires_in` varchar(100) NOT NULL,
   `create_time` bigint(100) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
