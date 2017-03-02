@@ -5,7 +5,7 @@
 			<a href="<%=request.getContextPath()%>/" class="brand">
 				<small>
 					<i class="icon-briefcase"></i>
-					&nbsp;爱学校 
+					&nbsp;翎筑管理后台 
 				</small>
 			</a><!--/.brand-->
 		</div><!--/.container-fluid-->
