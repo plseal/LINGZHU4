@@ -42,10 +42,10 @@ public class WeixinController {
 	@RequestMapping(value="/weixin",method=RequestMethod.POST,produces="text/html;charset=UTF-8")
 	@ResponseBody
 	public String replyMessage(HttpServletRequest request){
-		logger.info("["+this.getClass().getName()+"][replyMessage][start]"); 
+		logger.info("["+this.getClass().getName()+"][replyMessage][start111]"); 
 		//仅处理微信服务端发的请求
 		if (checkWeixinReques(request)) {
-			logger.info("["+this.getClass().getName()+"][replyMessage][start checkWeixinReques OK]");
+			//logger.info("["+this.getClass().getName()+"][replyMessage][start checkWeixinReques OK]");
 			Map<String, String> requestMap = WeixinUtil.parseXml(request);
 			Message message = WeixinUtil.mapToMessage(requestMap);
 			//weixinService.addMessage(message);//保存接受消息到数据库
