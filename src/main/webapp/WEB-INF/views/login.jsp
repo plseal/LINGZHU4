@@ -38,6 +38,7 @@
 											<span class="white"></span>
 											
 										</h1>
+										<h4 class="blue">&copy; <a href="http://weibo.com/2098099627" target="_blank">翎筑管理者</a></h4>
 									</div>
 								</div>
 	
