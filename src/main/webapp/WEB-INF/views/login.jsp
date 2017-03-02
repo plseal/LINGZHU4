@@ -38,7 +38,6 @@
 											<span class="white"></span>
 											
 										</h1>
-										<h4 class="blue">&copy; <a href="http://weibo.com/2098099627" target="_blank">智云同学</a></h4>
 									</div>
 								</div>
 	
