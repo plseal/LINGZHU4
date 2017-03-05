@@ -124,8 +124,9 @@ public class MenuController {
     	logger.info("["+this.getClass().getName()+"][getMenu][start]");
         CommonButton btn11 = new CommonButton();
         btn11.setName(btn11Name);
-        btn11.setType("click");
+        btn11.setType("view");
         btn11.setKey("11");
+        btn11.setUrl("http://www.plseal.com/Blog/index.html");
 
         CommonButton btn12 = new CommonButton();
         btn12.setName(btn12Name);
