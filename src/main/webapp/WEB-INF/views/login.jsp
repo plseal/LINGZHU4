@@ -22,6 +22,15 @@
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/ace-ie.min.css" />
 		<![endif]-->
+		<script type="text/javascript">
+		    document.onkeydown=function(event){
+		        var e = event || window.event || arguments.callee.caller.arguments[0];
+		         if(e && e.keyCode==13){ // enter 键
+		        	 document.getElementById('login').submit();
+		        }
+		    }; 
+
+		</script>
 	</head>
 	<body class="login-layout">
 			<br><br>
@@ -94,12 +103,9 @@
 														</fieldset>
 													</form>
 													<div class="social-or-login center">
-													<span class="bigger-110">翎筑管理后台(aixuexiao)</span>
+													<span class="bigger-110">翎筑管理后台</span>
 													</div>
 													
-													<div class="social-login center">
-														<img alt="翎筑管理后台" src="<%=request.getContextPath()%>/assets/images/getqrcode.jpeg" style="height: 100px;width: 100px;" >
-													</div>
 													
 												</div><!--/widget-main-->
 											</div><!--/widget-body-->

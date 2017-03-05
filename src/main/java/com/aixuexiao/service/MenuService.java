@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.aixuexiao.dao.ClassesDao;
@@ -21,6 +22,8 @@ import com.aixuexiao.model.Student;
 import com.aixuexiao.util.WeixinUtil;
 import com.aixuexiao.web.controller.WeixinController;
 
+import net.sf.json.JSONObject;
+
 import org.apache.log4j.Logger;
 @Service("menuService")
 public class MenuService {
@@ -28,23 +31,23 @@ public class MenuService {
 	
 	@Resource(name="accessTokenService")
 	private AccessTokenService accessTokenService;
+
+	// 菜单创建（POST） 限100（次/天）
+	public static String menu_create_url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN";
+
 	/**
 	* 描述:菜单管理器类 </br>
 	* 发布版本：V1.0  </br>
 	 */
-    public void createMenu() {
+    public void createMenu(Menu menu,String strAPPID,String strAPPSECRET) {
     	logger.info("["+this.getClass().getName()+"][createMenu][start]");
-        // 第三方用户唯一凭证
-        String appId = "wx4ca73689bde8aa0d";
-        // 第三方用户唯一凭证密钥
-        String appSecret = "c9cc9b55e2ae3434247d04af1be62b97";
 
         // 调用接口获取access_token
-        AccessToken at = accessTokenService.getAccessToken(appId, appSecret);
+        AccessToken at = accessTokenService.getAccessToken(strAPPID, strAPPSECRET);
 
         if (null != at) {
             // 调用接口创建菜单
-            int result = WeixinUtil.createMenu(getMenu(), at.getAccess_token());
+            int result = createMenu(menu, at.getAccess_token());
 
             // 判断菜单创建结果
             if (0 == result)
@@ -55,78 +58,33 @@ public class MenuService {
         logger.info("["+this.getClass().getName()+"][createMenu][end]");
     }
 
-    /**
-     * 组装菜单数据
-     * 
-     * @return
-     */
-    private Menu getMenu() {
-    	logger.info("["+this.getClass().getName()+"][getMenu][start]");
-        CommonButton btn11 = new CommonButton();
-        btn11.setName("快乐孕检");
-        btn11.setType("click");
-        btn11.setKey("11");
+	/**
+	 * 创建菜单
+	 * 
+	 * @param menu 菜单实例
+	 * @param accessToken 有效的access_token
+	 * @return 0表示成功，其他值表示失败
+	 */
+	public static int createMenu(Menu menu, String accessToken) {
+		logger.info("[WeixinUtil][createMenu][start]");
+		int result = 0;
 
-        CommonButton btn12 = new CommonButton();
-        btn12.setName("健康潮流");
-        btn12.setType("click");
-        btn12.setKey("12");
+		// 拼装创建菜单的url
+		String url = menu_create_url.replace("ACCESS_TOKEN", accessToken);
+		// 将菜单对象转换成json字符串
+		String jsonMenu = JSONObject.fromObject(menu).toString();
+		// 调用接口创建菜单
+		JSONObject jsonObject = WeixinUtil.httpRequest(url, "POST", jsonMenu);
 
-
-        CommonButton btn21 = new CommonButton();
-        btn21.setName("成长点滴");
-        btn21.setType("click");
-        btn21.setKey("21");
-
-        CommonButton btn22 = new CommonButton();
-        btn22.setName("快乐体检");
-        btn22.setType("click");
-        btn22.setKey("22");
-
-        CommonButton btn31 = new CommonButton();
-        btn31.setName("直接咨询");
-        btn31.setType("click");
-        btn31.setKey("31");
-
-        CommonButton btn32 = new CommonButton();
-        btn32.setName("了解我们");
-        btn32.setType("click");
-        btn32.setKey("32");
-
-        CommonButton btn33 = new CommonButton();
-        btn33.setName("联系我们");
-        btn33.setType("click");
-        btn33.setKey("33");
-
-        
-        /**
-         * 微信：  mainBtn1,mainBtn2,mainBtn3底部的三个一级菜单。
-         */
-        
-        ComplexButton mainBtn1 = new ComplexButton();
-        mainBtn1.setName("辣妈最爱");
-        //一级下有2个子菜单
-        mainBtn1.setSub_button(new CommonButton[] { btn11, btn12 });
-
-        
-        ComplexButton mainBtn2 = new ComplexButton();
-        mainBtn2.setName("萌宝天地");
-        mainBtn2.setSub_button(new CommonButton[] { btn21, btn22 });
-
-        
-        ComplexButton mainBtn3 = new ComplexButton();
-        mainBtn3.setName("医学咨询");
-        mainBtn3.setSub_button(new CommonButton[] { btn31, btn32, btn33 });
-
-        
-        /**
-         * 封装整个菜单
-         */
-        Menu menu = new Menu();
-        menu.setButton(new ComplexButton[] { mainBtn1, mainBtn2, mainBtn3 });
-        logger.info("["+this.getClass().getName()+"][getMenu][end]");
-        return menu;
-    }
+		if (null != jsonObject) {
+			if (0 != jsonObject.getInt("errcode")) {
+				result = jsonObject.getInt("errcode");
+				logger.error("创建菜单失败 ");
+			}
+		}
+		logger.info("[WeixinUtil][createMenu][end]");
+		return result;
+	}
 	
 	
 }
