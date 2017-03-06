@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50715
 File Encoding         : 65001
 
-Date: 2017-03-05 23:42:07
+Date: 2017-03-06 23:45:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -33,3 +33,4 @@ CREATE TABLE `t_blogger` (
 -- ----------------------------
 -- Records of t_blogger
 -- ----------------------------
+INSERT INTO `t_blogger` VALUES ('1', 'lingzhu', '6912b2d167c8e11a2fdd0105902f6904', null, null, null, null);
