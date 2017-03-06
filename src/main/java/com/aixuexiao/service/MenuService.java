@@ -34,6 +34,9 @@ public class MenuService {
 
 	// 菜单创建（POST） 限100（次/天）
 	public static String menu_create_url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN";
+	
+	// 菜单Get（Get） 限100（次/天）
+		public static String menu_get_url = "https://api.weixin.qq.com/cgi-bin/menu/get?access_token=ACCESS_TOKEN";
 
 	/**
 	* 描述:菜单管理器类 </br>
@@ -59,14 +62,51 @@ public class MenuService {
     }
 
 	/**
+	* 描述:菜单管理器类 </br>
+	* 发布版本：V1.0  </br>
+	 */
+    public String getMenu(String strAPPID,String strAPPSECRET) {
+    	logger.info("["+this.getClass().getName()+"][getMenu][start]");
+
+        // 调用接口获取access_token
+        AccessToken at = accessTokenService.getAccessToken(strAPPID, strAPPSECRET);
+        String result = "no result";
+        if (null != at) {
+            // 调用接口创建菜单
+     
+    		
+
+    		// 拼装创建菜单的url
+    		String url = menu_get_url.replace("ACCESS_TOKEN", at.getAccess_token());
+    		// 将菜单对象转换成json字符串
+    		//String jsonMenu = JSONObject.fromObject(menu).toString();
+    		// 调用接口创建菜单
+    		JSONObject jsonObject = WeixinUtil.httpRequest(url, "GET",null);
+
+    		if (null != jsonObject) {
+
+    				result = jsonObject.toString();
+
+    		}
+    		
+    		
+            
+        }
+        
+        logger.info("["+this.getClass().getName()+"][getMenu][end]");
+        return result;
+    }
+    
+    
+	/**
 	 * 创建菜单
 	 * 
 	 * @param menu 菜单实例
 	 * @param accessToken 有效的access_token
 	 * @return 0表示成功，其他值表示失败
 	 */
-	public static int createMenu(Menu menu, String accessToken) {
-		logger.info("[WeixinUtil][createMenu][start]");
+	public int createMenu(Menu menu, String accessToken) {
+		logger.info("["+this.getClass().getName()+"][createMenu][start]");
 		int result = 0;
 
 		// 拼装创建菜单的url
@@ -82,7 +122,7 @@ public class MenuService {
 				logger.error("创建菜单失败 ");
 			}
 		}
-		logger.info("[WeixinUtil][createMenu][end]");
+		logger.info("["+this.getClass().getName()+"][createMenu][end]");
 		return result;
 	}
 	

@@ -106,7 +106,8 @@ public class MenuController {
 		ModelAndView mv=new ModelAndView();
 		menuService.createMenu(menu,strAPPID,strAPPSECRET);
         mv.setViewName("result");
-        mv.addObject("strResult", "create Menu successed!");
+        
+        mv.addObject("strResult", menuService.getMenu(strAPPID,strAPPSECRET));
 		
 		logger.info("["+this.getClass().getName()+"][createMenu][end]"); 
 		return mv;
@@ -126,77 +127,92 @@ public class MenuController {
         btn11.setName(btn11Name);
         btn11.setType("view");
         btn11.setKey("11");
-        btn11.setUrl("http://www.plseal.com/Blog/index.html");
+        btn11.setUrl("http://www.plseal.com/Blog/index.html?typeId=1");
 
         CommonButton btn12 = new CommonButton();
         btn12.setName(btn12Name);
-        btn12.setType("click");
+        btn12.setType("view");
         btn12.setKey("12");
-
+        btn12.setUrl("http://www.plseal.com/Blog/index.html?typeId=2");
+        
         CommonButton btn13 = new CommonButton();
         btn13.setName(btn13Name);
-        btn13.setType("click");
+        btn13.setType("view");
         btn13.setKey("13");
+        btn13.setUrl("http://www.plseal.com/Blog/index.html?typeId=3");
         
         CommonButton btn14 = new CommonButton();
         btn14.setName(btn14Name);
-        btn14.setType("click");
+        btn14.setType("view");
         btn14.setKey("14");
+        btn14.setUrl("http://www.plseal.com/Blog/index.html?typeId=4");
         
         CommonButton btn15 = new CommonButton();
         btn15.setName(btn15Name);
-        btn15.setType("click");
+        btn15.setType("view");
         btn15.setKey("15");
+        btn15.setUrl("http://www.plseal.com/Blog/index.html?typeId=5");
 
         CommonButton btn21 = new CommonButton();
         btn21.setName(btn21Name);
-        btn21.setType("click");
+        btn21.setType("view");
         btn21.setKey("21");
+        btn21.setUrl("http://www.plseal.com/Blog/index.html?typeId=6");
 
         CommonButton btn22 = new CommonButton();
         btn22.setName(btn22Name);
-        btn22.setType("click");
+        btn22.setType("view");
         btn22.setKey("22");
+        btn22.setUrl("http://www.plseal.com/Blog/index.html?typeId=7");
         
         CommonButton btn23 = new CommonButton();
         btn23.setName(btn23Name);
-        btn23.setType("click");
+        btn23.setType("view");
         btn23.setKey("23");
+        btn23.setUrl("http://www.plseal.com/Blog/index.html?typeId=8");
+        
         
         CommonButton btn24 = new CommonButton();
         btn24.setName(btn24Name);
-        btn24.setType("click");
+        btn24.setType("view");
         btn24.setKey("24");
+        btn24.setUrl("http://www.plseal.com/Blog/index.html?typeId=9");
         
         CommonButton btn25 = new CommonButton();
         btn25.setName(btn25Name);
-        btn25.setType("click");
+        btn25.setType("view");
         btn25.setKey("25");
-
+        btn25.setUrl("http://www.plseal.com/Blog/index.html?typeId=10");
+        
         CommonButton btn31 = new CommonButton();
         btn31.setName(btn31Name);
-        btn31.setType("click");
+        btn31.setType("view");
         btn31.setKey("31");
+        btn31.setUrl("http://www.plseal.com/Blog/index.html?typeId=11");
 
         CommonButton btn32 = new CommonButton();
         btn32.setName(btn32Name);
-        btn32.setType("click");
+        btn32.setType("view");
         btn32.setKey("32");
-
+        btn32.setUrl("http://www.plseal.com/Blog/index.html?typeId=12");
+        
         CommonButton btn33 = new CommonButton();
         btn33.setName(btn33Name);
-        btn33.setType("click");
+        btn33.setType("view");
         btn33.setKey("33");
+        btn33.setUrl("http://www.plseal.com/Blog/index.html?typeId=13");
 
         CommonButton btn34 = new CommonButton();
         btn34.setName(btn34Name);
-        btn34.setType("click");
+        btn34.setType("view");
         btn34.setKey("34");
+        btn34.setUrl("http://www.plseal.com/Blog/index.html?typeId=14");
         
         CommonButton btn35 = new CommonButton();
         btn35.setName(btn35Name);
-        btn35.setType("click");
+        btn35.setType("view");
         btn35.setKey("35");
+        btn35.setUrl("http://www.plseal.com/Blog/index.html?typeId=15");
         /**
          * 微信：  mainBtn1,mainBtn2,mainBtn3底部的三个一级菜单。
          */
